@@ -1,0 +1,17 @@
+{
+  "name": "videolinkgenerator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "requestfile.js",
+  "dependencies": {
+    "express": "^4.13.4",
+    "request": "^2.69.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

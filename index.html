@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+.textbox{
+    padding: 0;
+    height: 35px;
+    width: 750px;
+    position: relative;
+    left: 0;
+    outline: none;
+    border: 1px solid #cdcdcd;
+    border-color: rgba(0,0,0,.15);
+    background-color: white;
+    font-size: 16px;
+} 
+
+#heading
+{
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: 40%;
+    margin-top: 3%;
+}
+
+#contents {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: 15%;
+    margin-top: 15%;
+}
+
+#outputdiv {
+    display:none;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: 15%;
+    margin-top: 15%;
+}
+
+.button {
+    background-color: #FFD700;
+    border: none;
+    color: white;
+    padding: 15px 35px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+}
+.outputbutton {
+    background-color:#1865F4;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;	
+}
+
+</style>
+
+</head>
+
+<body>
+<div id="heading"> <h2>MP4 Link Generator </h2></div>
+
+<div id="contents">
+   <p>Paste Wistia Video Link here to get MP4 link</p>
+   <a href="#" class="textbox"></a>
+   <input id="txt_box" type="text" class="textbox"/>
+   <a href="#" class="button" onclick="loadDoc()">Get MP4</a>
+</div>
+
+<div id="outputdiv" style = "display:none">
+    <p>Here is your Link!<p>
+    <input id="outputbox" type="text" class="textbox" onclick="this.focus();this.select()"><br>
+    <p> Step 1: Click on the Link in TextBox <br> Step 2: Press Ctrl+C in case of Windows or Command+C in case of Mac </p>    
+</div>
+
+
+
+<script>
+  function loadDoc() {
+    var UserInputURL = document.getElementById("txt_box").value;
+    var path = UserInputURL.split('/');
+    var HashID = path[4];
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 && xhttp.status == 200) {
+       //document.write(xhttp.responseText);
+       document.getElementById("contents").style.display ="none";
+       document.getElementById("outputbox").value=xhttp.responseText;
+       document.getElementById("outputdiv").style.display ="block";
+     }
+    };
+    var properurl="http://localhost:3000/ManupulateLink?ID="+HashID;
+    xhttp.open("GET",properurl, true);
+    xhttp.send();
+  } 
+</script>
+
+</body>
+</html>
