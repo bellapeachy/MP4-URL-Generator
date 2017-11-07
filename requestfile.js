@@ -11,7 +11,7 @@ app.get('/getMP4LinkUI', function (req, res) {
 
 app.get('/ManupulateLink', function (req, res) {
   HashID = req.query.ID;
-  var RequestURL='https://api.wistia.com/v1/medias/' + HashID + '.json?api_password='Wistia Data API Password goes here';
+  var RequestURL='https://api.wistia.com/v1/medias/' + HashID + '.json?api_password='+ 'Wistia Data API Password goes here';
   request(RequestURL, function (error, response, body) {
   if (!error && response.statusCode == 200)
   {
